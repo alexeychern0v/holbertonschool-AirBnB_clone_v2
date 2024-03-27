@@ -1,20 +1,24 @@
 #!/usr/bin/python3
-"""This module defines a class User"""
+"""This is the user class"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 
 class User(BaseModel, Base):
-    """This class defines a user by various attributes"""
-    __tablename__ = "users"
-    email = Column('email', String(128), nullable=False)
-    password = Column('password', String(128), nullable=False)
-    first_name = Column('first_name', String(
-        128), nullable=True, default="NULL")
-    last_name = Column('last_name', String(128), nullable=True, default="NULL")
-    # backref may need to be back_populates?Below line commented out bc console
-    # would not run with it in. This line was implemented in Task 8
-    places = relationship("Place", cascade="delete", backref="user")
-    # Below line is commented out for caution and was added in Task 9
-    reviews = relationship("Review", cascade="delete", backref="user")
+    """This is the class for user
+    Attributes:
+        email: email address
+        password: password for you login
+        first_name: first name
+        last_name: last name
+    """
+    __tablename__ = 'users'
+
+    email = Column(String(128), nullable=False)
+    password = Column(String(128), nullable=False)
+    first_name = Column(String(128), nullable=True)
+    last_name = Column(String(128), nullable=True)
+
+    reviews = relationship('Review', cascade='all, delete', backref='user')
+    places = relationship('Place', cascade='all, delete', backref='user')
