@@ -19,7 +19,7 @@ def hbnb():
 
 
 @app.route("/c/<text>", strict_slashes=False)
-def ctext():
+def ctext(text):
     """ Displays C and the text """
     text = text.replace("_", " ")
     return "C {}".format(text)
