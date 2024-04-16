@@ -1,1 +1,2 @@
 # holbertonschool-back-end
+rtfm
